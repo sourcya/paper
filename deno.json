@@ -1,12 +1,19 @@
 {
   "name": "@sourcya/paper",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "exports": {
     ".": "./mod.ts",
     "./preact": "./preact/mod.ts"
   },
+  "imports": {
+    "preact": "npm:preact@^10.19.0",
+    "preact/hooks": "npm:preact@^10.19.0/hooks",
+    "preact/jsx-runtime": "npm:preact@^10.19.0/jsx-runtime"
+  },
   "compilerOptions": {
-    "lib": ["deno.window", "dom", "dom.iterable"]
+    "lib": ["deno.window", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   }
 }
