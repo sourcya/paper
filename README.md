@@ -49,6 +49,45 @@ renderer.resize();
 - **Input Handling** - Mouse, touch, pen with palm rejection
 - **Grid System** - None, lines, dots with configurable spacing
 
+## Preact Components
+
+The library includes ready-to-use Preact components for quick integration:
+
+```typescript
+import { PaperApp, Canvas, Toolbar, usePaperApp } from "@sourcya/paper/preact";
+
+// Option 1: Use the full app component
+function App() {
+  return <PaperApp />;
+}
+
+// Option 2: Compose your own layout
+function CustomApp() {
+  const { state, initializeApp, callbacks } = usePaperApp();
+
+  return (
+    <div class="paper-container">
+      <Toolbar
+        activeTool={state.activeTool}
+        canUndo={state.canUndo}
+        canRedo={state.canRedo}
+        penActive={state.penActive}
+        {...callbacks}
+      />
+      <Canvas onCanvasReady={initializeApp} />
+    </div>
+  );
+}
+```
+
+### Available Exports
+
+- **`PaperApp`** - Complete drawing app component
+- **`Canvas`** - Canvas wrapper component
+- **`Toolbar`** - Toolbar with all drawing tools
+- **`usePaperApp`** - Hook for app state and callbacks
+- **Icons** - SVG icon components for tools
+
 ## License
 
 MIT

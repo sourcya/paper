@@ -1,8 +1,11 @@
 {
   "name": "@sourcya/paper",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
-  "exports": "./mod.ts",
+  "exports": {
+    ".": "./mod.ts",
+    "./preact": "./preact/mod.ts"
+  },
   "compilerOptions": {
     "lib": ["deno.window", "dom", "dom.iterable"]
   }
