@@ -1,9 +1,9 @@
 {
   "name": "@sourcya/paper",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "license": "MIT",
   "exports": {
-    ".": "./mod.ts",
+    ".": "./lib/mod.ts",
     "./preact": "./preact/mod.ts"
   },
   "imports": {

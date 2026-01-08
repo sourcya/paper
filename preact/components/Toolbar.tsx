@@ -1,6 +1,6 @@
 /** @jsxImportSource preact */
 import type { JSX } from "preact";
-import type { Tool, SavedPaperInfo } from "../../mod.ts";
+import type { Tool, SavedPaperInfo } from "../../lib/mod.ts";
 import { useState, useRef, useEffect } from "preact/hooks";
 import {
   PenIcon,

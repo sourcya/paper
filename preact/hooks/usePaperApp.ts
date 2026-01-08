@@ -13,7 +13,7 @@ import {
   type InputHandler,
   type GridSystem,
   type SavedPaperInfo,
-} from "../../mod.ts";
+} from "../../lib/mod.ts";
 
 interface PaperAppState {
   activeTool: Tool;
