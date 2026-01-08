@@ -1,0 +1,25 @@
+{
+  "tasks": {
+    "build": "deno run --allow-all build.ts",
+    "dev": "deno task build && deno run --allow-all --watch main.tsx",
+    "start": "deno task build && deno run --allow-all main.tsx"
+  },
+  "imports": {
+    "hono": "jsr:@hono/hono@^4.9.8",
+    "hono/deno": "jsr:@hono/hono@^4.9.8/deno",
+    "hono/jsx": "jsr:@hono/hono@^4.9.8/jsx",
+    "preact": "npm:preact@^10.19.0",
+    "preact/hooks": "npm:preact@^10.19.0/hooks",
+    "preact/jsx-runtime": "npm:preact@^10.19.0/jsx-runtime",
+    "esbuild": "npm:esbuild@^0.20.0",
+    "@luca/esbuild-deno-loader": "jsr:@luca/esbuild-deno-loader@^0.10.3",
+    "@std/fs/copy": "jsr:@std/fs@^1/copy",
+    "@sourcya/paper": "../mod.ts",
+    "@sourcya/paper/preact": "../preact/mod.ts",
+    "@sourcya/paper/preact/css": "../preact/css/mod.ts"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx"
+  }
+}
