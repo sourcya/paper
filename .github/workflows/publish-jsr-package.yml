@@ -1,4 +1,4 @@
-name: Publish
+name: Publish @sourcya/paper on JSR
 on:
   push:
     branches:
@@ -12,5 +12,5 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v5
-      - name: Publish package
+      - name: Publish to JSR
         run: npx jsr publish

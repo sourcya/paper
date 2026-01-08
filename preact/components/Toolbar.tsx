@@ -1,4 +1,5 @@
 /** @jsxImportSource preact */
+import type { JSX } from "preact";
 import type { Tool, SavedPaperInfo } from "../../mod.ts";
 import { useState, useRef, useEffect } from "preact/hooks";
 import {
@@ -39,7 +40,7 @@ interface ToolbarProps {
   penActive: boolean;
 }
 
-export function Toolbar(props: ToolbarProps) {
+export function Toolbar(props: ToolbarProps): JSX.Element {
   const {
     activeTool,
     onToolChange,

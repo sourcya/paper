@@ -12,6 +12,7 @@ import {
   type ToolManager,
   type InputHandler,
   type GridSystem,
+  type SavedPaperInfo,
 } from "../../mod.ts";
 
 interface PaperAppState {
@@ -21,7 +22,30 @@ interface PaperAppState {
   penActive: boolean;
 }
 
-export function usePaperApp() {
+interface PaperAppCallbacks {
+  onToolChange: (tool: Tool) => void;
+  onColorChange: (color: string) => void;
+  onSizeChange: (size: string) => void;
+  onGridToggle: () => void;
+  onGridSpacingChange: (spacing: number) => void;
+  onUndo: () => void;
+  onRedo: () => void;
+  onClear: () => void;
+  onNew: () => void;
+  onLoad: (id: string) => void;
+  onGetSavedPapers: () => SavedPaperInfo[];
+  onDelete: (id: string) => void;
+  onRename: (id: string, newName: string) => void;
+  onExport: () => void;
+}
+
+interface UsePaperAppReturn {
+  state: PaperAppState;
+  initializeApp: (canvas: HTMLCanvasElement) => (() => void);
+  callbacks: PaperAppCallbacks;
+}
+
+export function usePaperApp(): UsePaperAppReturn {
   const [state, setState] = useState<PaperAppState>({
     activeTool: "pen",
     canUndo: false,

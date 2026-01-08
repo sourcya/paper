@@ -1,11 +1,12 @@
 /** @jsxImportSource preact */
+import type { JSX } from "preact";
 import { useRef, useEffect } from "preact/hooks";
 
 interface CanvasProps {
   onCanvasReady: (canvas: HTMLCanvasElement) => void;
 }
 
-export function Canvas({ onCanvasReady }: CanvasProps) {
+export function Canvas({ onCanvasReady }: CanvasProps): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
