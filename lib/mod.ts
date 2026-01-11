@@ -1,5 +1,21 @@
-// Paper Core Library
-// A framework-agnostic canvas drawing library
+/**
+ * Paper Core Library - A framework-agnostic canvas drawing library.
+ *
+ * This module provides the core functionality for creating canvas-based
+ * drawing applications with support for pen input, pressure sensitivity,
+ * multiple tools, and undo/redo history.
+ *
+ * @example
+ * ```ts
+ * import { createStateManager, createRenderer, createToolManager, createInputHandler } from "@sourcya/paper";
+ *
+ * const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+ * const renderer = createRenderer(canvas);
+ * const stateManager = createStateManager((paper) => renderer.render(paper));
+ * ```
+ *
+ * @module
+ */
 
 // Types
 export type {

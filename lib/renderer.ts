@@ -1,22 +1,63 @@
+/**
+ * Canvas rendering module for Paper.
+ *
+ * Provides functionality for rendering paper elements to an HTML canvas,
+ * including strokes, rectangles, text, grids, and preview elements.
+ *
+ * @module renderer
+ */
+
 import type { Paper, Stroke, Rectangle, TextElement, GridSettings, PaperElement } from "./types.ts";
 
+/**
+ * Interface for rendering Paper elements to a canvas.
+ * Handles all drawing operations including elements, grid, and previews.
+ */
 export interface Renderer {
+  /** Clears the entire canvas. */
   clear: () => void;
+  /** Resizes the canvas to match its container, accounting for device pixel ratio. */
   resize: () => void;
+  /** Draws a stroke element with pressure-sensitive width. */
   drawStroke: (stroke: Stroke) => void;
+  /** Draws a rectangle element. */
   drawRectangle: (rect: Rectangle) => void;
+  /** Draws a text element. */
   drawTextElement: (textEl: TextElement) => void;
+  /** Draws the background grid. */
   drawGrid: (gridSettings: GridSettings, width: number, height: number) => void;
+  /** Draws any paper element (stroke, rectangle, or text). */
   drawElement: (element: PaperElement) => void;
+  /** Renders the complete paper including grid and all elements. */
   render: (paper: Paper) => void;
+  /** Draws a dashed preview rectangle during rectangle tool usage. */
   drawPreviewRectangle: (x: number, y: number, width: number, height: number, color: string, strokeWidth: number) => void;
+  /** Draws a text cursor at the specified position. */
   drawTextCursor: (x: number, y: number, fontSize: number) => void;
+  /** Draws the eraser selection rectangle with highlight. */
   drawEraserSelection: (x: number, y: number, width: number, height: number) => void;
+  /** Returns the underlying 2D rendering context. */
   getContext: () => CanvasRenderingContext2D;
+  /** Exports the canvas content as a PNG data URL. */
   exportToPNG: () => string;
+  /** Downloads the canvas content as a PNG file. */
   downloadPNG: (filename?: string) => void;
 }
 
+/**
+ * Creates a new renderer for drawing to an HTML canvas.
+ *
+ * @param canvas - The HTML canvas element to render to.
+ * @returns A Renderer instance for drawing operations.
+ *
+ * @example
+ * ```ts
+ * const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+ * const renderer = createRenderer(canvas);
+ * renderer.resize();
+ * renderer.render(paper);
+ * ```
+ */
 export function createRenderer(canvas: HTMLCanvasElement): Renderer {
   const ctx = canvas.getContext("2d")!;
 

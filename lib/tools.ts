@@ -1,3 +1,13 @@
+/**
+ * Tool management module for Paper.
+ *
+ * Provides functionality for managing drawing tools, handling input events,
+ * and coordinating tool-specific behaviors like pen strokes, erasing,
+ * rectangle drawing, and text input.
+ *
+ * @module tools
+ */
+
 import type {
   Tool,
   ToolSettings,
@@ -13,17 +23,32 @@ import type {
   KeyboardEventData,
 } from "./types.ts";
 
+/**
+ * Interface for managing drawing tools and their interactions.
+ * Handles tool switching, settings, and input event processing.
+ */
 export interface ToolManager {
+  /** Sets the currently active tool. */
   setTool: (tool: Tool) => void;
+  /** Returns the currently active tool. */
   getTool: () => Tool;
+  /** Updates tool settings. */
   setSettings: (settings: Partial<ToolSettings>) => void;
+  /** Returns current tool settings including the active tool. */
   getSettings: () => ToolSettings & { currentTool: Tool };
+  /** Handles the start of a stroke (pointer down). */
   handleStrokeStart: (point: Point) => void;
+  /** Handles stroke movement (pointer move while drawing). */
   handleStrokeMove: (point: Point) => void;
+  /** Handles the end of a stroke (pointer up). */
   handleStrokeEnd: (point: Point) => void;
+  /** Handles canvas click events (used for text tool positioning). */
   handleClick: (position: { x: number; y: number }) => void;
+  /** Handles keyboard events. Returns true if the event was consumed. */
   handleKeyDown: (event: KeyboardEventData) => boolean;
+  /** Finishes any in-progress action (e.g., commits text input). */
   finishCurrentAction: () => void;
+  /** Returns the current preview state for rendering feedback. */
   getActivePreview: () => PreviewType;
 }
 
@@ -31,6 +56,22 @@ function generateId(): string {
   return Math.random().toString(36).substring(2, 15);
 }
 
+/**
+ * Creates a new tool manager for handling drawing tool interactions.
+ *
+ * @param onElementComplete - Callback invoked when an element is finished (stroke, rectangle, text, or erase action).
+ * @param onPreviewUpdate - Callback invoked when the preview state changes during drawing.
+ * @returns A ToolManager instance for managing tools.
+ *
+ * @example
+ * ```ts
+ * const toolManager = createToolManager(
+ *   (element) => stateManager.addElement(element),
+ *   (preview) => { previewState = preview; render(); }
+ * );
+ * toolManager.setTool("pen");
+ * ```
+ */
 export function createToolManager(
   onElementComplete: OnElementCompleteCallback,
   onPreviewUpdate: OnPreviewUpdateCallback

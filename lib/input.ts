@@ -1,15 +1,56 @@
+/**
+ * Input handling module for Paper.
+ *
+ * Provides functionality for capturing and processing pointer, touch, and keyboard
+ * events from an HTML canvas. Includes palm rejection for pen input and
+ * support for pen button detection (eraser mode).
+ *
+ * @module input
+ */
+
 import type { Point, InputEventMap, KeyboardEventData } from "./types.ts";
 
+/**
+ * Callback function type for input event handlers.
+ * @typeParam K - The event type key from InputEventMap.
+ */
 type EventCallback<K extends keyof InputEventMap> = (data: InputEventMap[K]) => void;
 
+/**
+ * Interface for handling canvas input events.
+ * Provides event subscription and lifecycle management.
+ */
 export interface InputHandler {
+  /** Registers an event listener for the specified event type. */
   on: <K extends keyof InputEventMap>(event: K, callback: EventCallback<K>) => void;
+  /** Removes an event listener for the specified event type. */
   off: <K extends keyof InputEventMap>(event: K, callback: EventCallback<K>) => void;
+  /** Attaches all event listeners to the canvas and document. */
   attach: () => void;
+  /** Detaches all event listeners from the canvas and document. */
   detach: () => void;
+  /** Returns whether a drawing operation is currently in progress. */
   isDrawing: () => boolean;
 }
 
+/**
+ * Creates a new input handler for capturing canvas input events.
+ *
+ * Handles pointer events (mouse, touch, pen) with palm rejection for pen input,
+ * keyboard events, and pen button detection for automatic eraser switching.
+ *
+ * @param canvas - The HTML canvas element to capture input from.
+ * @returns An InputHandler instance for managing input events.
+ *
+ * @example
+ * ```ts
+ * const input = createInputHandler(canvas);
+ * input.on("strokeStart", (point) => console.log("Started at", point));
+ * input.on("strokeMove", (point) => console.log("Moving to", point));
+ * input.on("strokeEnd", (point) => console.log("Ended at", point));
+ * input.attach();
+ * ```
+ */
 export function createInputHandler(canvas: HTMLCanvasElement): InputHandler {
   const listeners: { [K in keyof InputEventMap]?: EventCallback<K>[] } = {
     strokeStart: [],

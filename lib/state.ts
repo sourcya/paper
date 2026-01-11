@@ -1,3 +1,12 @@
+/**
+ * State management module for Paper documents.
+ *
+ * Provides functionality for managing paper state, including adding/removing elements,
+ * undo/redo history, persistence to localStorage, and import/export capabilities.
+ *
+ * @module state
+ */
+
 import type {
   Paper,
   PaperElement,
@@ -8,24 +17,46 @@ import type {
   SavedPaperInfo,
 } from "./types.ts";
 
+/**
+ * Interface for managing the state of a Paper document.
+ * Handles element operations, history, and persistence.
+ */
 export interface StateManager {
+  /** Returns the current paper document. */
   getPaper: () => Paper;
+  /** Adds a new element to the paper. */
   addElement: (element: PaperElement) => void;
+  /** Removes an element by its ID. */
   removeElement: (id: string) => void;
+  /** Erases all elements within the specified rectangle. */
   eraseInRect: (rect: Rect) => void;
+  /** Clears all elements from the paper. */
   clearElements: () => void;
+  /** Updates the grid settings. */
   setGridSettings: (settings: Partial<GridSettings>) => void;
+  /** Undoes the last action. Returns true if successful. */
   undo: () => boolean;
+  /** Redoes the last undone action. Returns true if successful. */
   redo: () => boolean;
+  /** Returns whether an undo operation is available. */
   canUndo: () => boolean;
+  /** Returns whether a redo operation is available. */
   canRedo: () => boolean;
+  /** Saves the paper to localStorage. Returns the saved JSON string. */
   save: () => string;
+  /** Loads a paper from localStorage by ID. Returns true if successful. */
   load: (id: string) => boolean;
+  /** Exports the paper as a formatted JSON string. */
   exportToJSON: () => string;
+  /** Imports a paper from a JSON string. Returns true if successful. */
   importFromJSON: (json: string) => boolean;
+  /** Creates a new blank paper with optional name. */
   newPaper: (name?: string) => void;
+  /** Lists all saved papers from localStorage. */
   listSavedPapers: () => SavedPaperInfo[];
+  /** Deletes a saved paper by ID. */
   deletePaper: (id: string) => void;
+  /** Renames a saved paper. Returns true if successful. */
   renamePaper: (id: string, newName: string) => boolean;
 }
 
@@ -33,6 +64,20 @@ function generateId(): string {
   return Math.random().toString(36).substring(2, 15);
 }
 
+/**
+ * Creates a new state manager for managing Paper documents.
+ *
+ * @param onChange - Callback function invoked whenever the paper state changes.
+ * @returns A StateManager instance for managing paper state.
+ *
+ * @example
+ * ```ts
+ * const stateManager = createStateManager((paper) => {
+ *   console.log("Paper updated:", paper.name);
+ *   renderer.render(paper);
+ * });
+ * ```
+ */
 export function createStateManager(onChange: OnChangeCallback): StateManager {
   let paper: Paper = {
     id: generateId(),

@@ -1,0 +1,16 @@
+{
+  "version": "5",
+  "specifiers": {
+    "npm:preact@^10.19.0": "10.28.2"
+  },
+  "npm": {
+    "preact@10.28.2": {
+      "integrity": "sha512-lbteaWGzGHdlIuiJ0l2Jq454m6kcpI1zNje6d8MlGAFlYvP2GO4ibnat7P74Esfz4sPTdM6UxtTwh/d3pwM9JA=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:preact@^10.19.0"
+    ]
+  }
+}

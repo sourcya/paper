@@ -1,3 +1,12 @@
+/**
+ * Preact hook for Paper application state management.
+ *
+ * Provides a complete hook for managing a Paper drawing application,
+ * including canvas initialization, tool management, and state handling.
+ *
+ * @module usePaperApp
+ */
+
 import { useState, useCallback, useRef } from "preact/hooks";
 import {
   createStateManager,
@@ -15,36 +24,92 @@ import {
   type SavedPaperInfo,
 } from "../../lib/mod.ts";
 
+/**
+ * State object returned by the usePaperApp hook.
+ */
 interface PaperAppState {
+  /** The currently active drawing tool. */
   activeTool: Tool;
+  /** Whether an undo operation is available. */
   canUndo: boolean;
+  /** Whether a redo operation is available. */
   canRedo: boolean;
+  /** Whether a pen input device is currently active. */
   penActive: boolean;
 }
 
+/**
+ * Callback functions for Paper application interactions.
+ */
 interface PaperAppCallbacks {
+  /** Changes the active drawing tool. */
   onToolChange: (tool: Tool) => void;
+  /** Changes the drawing color. */
   onColorChange: (color: string) => void;
+  /** Changes the stroke/font size. */
   onSizeChange: (size: string) => void;
+  /** Toggles through grid types. */
   onGridToggle: () => void;
+  /** Changes the grid spacing. */
   onGridSpacingChange: (spacing: number) => void;
+  /** Undoes the last action. */
   onUndo: () => void;
+  /** Redoes the last undone action. */
   onRedo: () => void;
+  /** Clears all elements from the canvas. */
   onClear: () => void;
+  /** Creates a new paper. */
   onNew: () => void;
+  /** Loads a saved paper by ID. */
   onLoad: (id: string) => void;
+  /** Returns a list of saved papers. */
   onGetSavedPapers: () => SavedPaperInfo[];
+  /** Deletes a saved paper by ID. */
   onDelete: (id: string) => void;
+  /** Renames a saved paper. */
   onRename: (id: string, newName: string) => void;
+  /** Exports the canvas as a PNG file. */
   onExport: () => void;
 }
 
+/**
+ * Return type of the usePaperApp hook.
+ */
 interface UsePaperAppReturn {
+  /** Current application state. */
   state: PaperAppState;
+  /** Function to initialize the app with a canvas element. Returns a cleanup function. */
   initializeApp: (canvas: HTMLCanvasElement) => (() => void);
+  /** Callback functions for user interactions. */
   callbacks: PaperAppCallbacks;
 }
 
+/**
+ * Preact hook for managing a Paper drawing application.
+ *
+ * Provides complete state management, canvas initialization, and callback
+ * functions for building a Paper-based drawing application.
+ *
+ * @returns An object containing state, initialization function, and callbacks.
+ *
+ * @example
+ * ```tsx
+ * function DrawingApp() {
+ *   const { state, initializeApp, callbacks } = usePaperApp();
+ *
+ *   const handleCanvasReady = (canvas: HTMLCanvasElement) => {
+ *     initializeApp(canvas);
+ *   };
+ *
+ *   return (
+ *     <div>
+ *       <Toolbar activeTool={state.activeTool} {...callbacks} />
+ *       <Canvas onCanvasReady={handleCanvasReady} />
+ *     </div>
+ *   );
+ * }
+ * ```
+ */
 export function usePaperApp(): UsePaperAppReturn {
   const [state, setState] = useState<PaperAppState>({
     activeTool: "pen",

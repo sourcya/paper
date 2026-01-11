@@ -1,3 +1,9 @@
+/**
+ * Toolbar component for Paper drawing tools.
+ *
+ * @module Toolbar
+ */
+
 /** @jsxImportSource preact */
 import type { JSX } from "preact";
 import type { Tool, SavedPaperInfo } from "../../lib/mod.ts";
@@ -19,27 +25,57 @@ import {
   LogoIcon,
 } from "../icons/index.tsx";
 
+/**
+ * Props for the Toolbar component.
+ */
 interface ToolbarProps {
+  /** The currently active drawing tool. */
   activeTool: Tool;
+  /** Callback when tool selection changes. */
   onToolChange: (tool: Tool) => void;
+  /** Callback when color changes. */
   onColorChange: (color: string) => void;
+  /** Callback when size changes. */
   onSizeChange: (size: string) => void;
+  /** Callback to toggle grid type. */
   onGridToggle: () => void;
+  /** Callback when grid spacing changes. */
   onGridSpacingChange: (spacing: number) => void;
+  /** Callback to undo last action. */
   onUndo: () => void;
+  /** Callback to redo last undone action. */
   onRedo: () => void;
+  /** Callback to clear all elements. */
   onClear: () => void;
+  /** Callback to create a new paper. */
   onNew: () => void;
+  /** Callback to load a saved paper. */
   onLoad: (id: string) => void;
+  /** Callback to get list of saved papers. */
   onGetSavedPapers: () => SavedPaperInfo[];
+  /** Callback to delete a saved paper. */
   onDelete: (id: string) => void;
+  /** Callback to rename a saved paper. */
   onRename: (id: string, newName: string) => void;
+  /** Callback to export canvas as PNG. */
   onExport: () => void;
+  /** Whether undo is available. */
   canUndo: boolean;
+  /** Whether redo is available. */
   canRedo: boolean;
+  /** Whether a pen input device is active. */
   penActive: boolean;
 }
 
+/**
+ * A toolbar component providing drawing tools and controls for Paper.
+ *
+ * Includes tool selection, color picker, size selector, grid controls,
+ * undo/redo, and file management options.
+ *
+ * @param props - The component props.
+ * @returns The toolbar UI element.
+ */
 export function Toolbar(props: ToolbarProps): JSX.Element {
   const {
     activeTool,

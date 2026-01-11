@@ -1,6 +1,13 @@
+/**
+ * SVG icon components for the Paper toolbar.
+ *
+ * @module icons
+ */
+
 /** @jsxImportSource preact */
 import type { JSX } from "preact";
 
+/** Pen tool icon. */
 export const PenIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
@@ -9,18 +16,21 @@ export const PenIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Eraser tool icon. */
 export const EraserIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M20 20H7L3 16c-.8-.8-.8-2 0-2.8L13.8 2.4c.8-.8 2-.8 2.8 0L21 6.8c.8.8.8 2 0 2.8L12 18"></path>
   </svg>
 );
 
+/** Rectangle tool icon. */
 export const RectangleIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
   </svg>
 );
 
+/** Text tool icon. */
 export const TextIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <polyline points="4 7 4 4 20 4 20 7"></polyline>
@@ -29,6 +39,7 @@ export const TextIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Grid toggle icon. */
 export const GridIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <rect x="3" y="3" width="18" height="18"></rect>
@@ -39,6 +50,7 @@ export const GridIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Undo action icon. */
 export const UndoIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M3 7v6h6"></path>
@@ -46,6 +58,7 @@ export const UndoIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Redo action icon. */
 export const RedoIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M21 7v6h-6"></path>
@@ -53,6 +66,7 @@ export const RedoIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Trash/delete icon. */
 export const TrashIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <polyline points="3 6 5 6 21 6"></polyline>
@@ -60,6 +74,7 @@ export const TrashIcon = (): JSX.Element => (
   </svg>
 );
 
+/** New document icon. */
 export const NewIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -69,12 +84,14 @@ export const NewIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Folder/load icon. */
 export const FolderIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
   </svg>
 );
 
+/** Download/export icon. */
 export const DownloadIcon = (): JSX.Element => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -83,6 +100,7 @@ export const DownloadIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Rename/edit icon. */
 export const RenameIcon = (): JSX.Element => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -90,6 +108,7 @@ export const RenameIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Small trash icon for inline delete buttons. */
 export const SmallTrashIcon = (): JSX.Element => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
     <polyline points="3 6 5 6 21 6"></polyline>
@@ -97,6 +116,7 @@ export const SmallTrashIcon = (): JSX.Element => (
   </svg>
 );
 
+/** Paper application logo icon. */
 export const LogoIcon = (): JSX.Element => (
   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1a466b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
